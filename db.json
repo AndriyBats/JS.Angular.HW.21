@@ -1,0 +1,63 @@
+{
+  "blogs": [
+    {
+      "title": "Title 1",
+      "text": "some text  1",
+      "date": "2021-10-09T21:39:59.514Z",
+      "author": "Ivanenko Ivan",
+      "id": 1
+    },
+    {
+      "title": "Title 2",
+      "text": "some text 2",
+      "date": "2021-10-09T21:43:52.018Z",
+      "author": "Petrenko Petro",
+      "id": 2
+    },
+    {
+      "title": "Title 3",
+      "text": "some text 3",
+      "date": "2021-10-09T21:44:32.974Z",
+      "author": "Dmytrenko Dmytro",
+      "id": 3
+    }
+  ],
+  "categories": [
+    {
+      "name": "pizza",
+      "id": 1
+    },
+    {
+      "name": "pasta",
+      "id": 2
+    },
+    {
+      "name": "drinks",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "category": {
+        "name": "pizza",
+        "id": 1
+      },
+      "name": "Cesario",
+      "description": "bla bla bla",
+      "price": 200,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/angularadmincategory-products.appspot.com/o/images%2Ftsezario.jpg.jpg?alt=media&token=95a74836-508e-4732-94a1-72c862be3138",
+      "id": 1
+    },
+    {
+      "category": {
+        "name": "pizza",
+        "id": 1
+      },
+      "name": "La piec",
+      "description": "bla bla bla bla bla",
+      "price": 190,
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/angularadmincategory-products.appspot.com/o/images%2Fla-pyets.jpg.jpg?alt=media&token=ed625d30-8c19-4994-8ab4-4a2eaa23caf3",
+      "id": 2
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<form [formGroup]="blogForm" (ngSubmit)="saveBlog()">
+  <input type="text" class="form-control my-3" formControlName="title" placeholder="title here..">
+  <textarea class="form-control my-3" rows="3" formControlName="text" placeholder="text here.."></textarea>
+  <input type="text" class="form-control my-3" formControlName="author" placeholder="author here..">
+  <button *ngIf="!editStatus" type="submit" class="btn btn-dark" [disabled]="blogForm.invalid">Add</button>
+  <button *ngIf="editStatus" type="button" class="btn btn-light" (click)=" saveEditBlog()">Save edit</button>
+</form>
+<hr>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Text</th>
+      <th scope="col">Date</th>
+      <th scope="col">Author</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of adminBlogs, let i = index">
+      <td>{{item.id}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.text}}</td>
+      <td>{{item.date | date: 'mediumDate'}}</td>
+      <td>{{item.author}}</td>
+      <td>
+        <button (click)="editBlog(item)" type="button" class="btn btn-dark">Edit</button>
+      </td>
+      <td>
+        <button (click)="deleteBlog(item)" type="button" class="btn btn-dark">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

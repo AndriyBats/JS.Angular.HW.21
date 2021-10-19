@@ -1,0 +1,40 @@
+.container{
+    margin: 10px 0;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 0;
+}
+.header{
+    padding: 0 30px;
+    height: 60px;
+    background-color: whitesmoke;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.dark{
+    width: 120px;
+    height: 40px;
+}
+.main{
+    margin: 20px;
+}
+thead{
+    background-color: Gainsboro;
+    border: 1px solid lightgrey;
+}
+th{
+    border: 1px solid lightgrey;  
+}
+td{
+    text-align: center;
+    border: 1px solid lightgrey;
+}
+.buttons{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}

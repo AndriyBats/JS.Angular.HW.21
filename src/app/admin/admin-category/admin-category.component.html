@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <h5>Category</h5>
+    <button type="button" class="btn btn-dark dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+  </div>
+  <div class="main">
+    <input class="form-control" type="text" placeholder="filter category.." [(ngModel)]="searchWord">
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 50px;">#</th>
+          <th scope="col">Name</th>
+          <th scope="col" style="width: 100px;">Edit</th>
+          <th scope="col" style="width: 100px;">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of adminCategories  | search: searchWord, let i = index">
+          <td>{{item.id}}</td>
+          <td style="text-align: start;">{{item.name}}</td>
+          <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="editCategory(item)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+              data-bs-target="#exampleModal1" (click)="tryDeleteCategory(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form [formGroup]="nameCategoryForm" (ngSubmit)="saveCategory()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input formControlName="name" class="form-control" type="text" placeholder="name here..">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #close>Close</button>
+        <button *ngIf="!editStatus" type="submit" class="btn btn-dark"
+          [disabled]="nameCategoryForm.invalid">Add</button>
+        <button *ngIf="editStatus" type="button" class="btn btn-dark" (click)="saveEditCategory()">Save edit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Smal Modal -->
+<div class="modal" id="exampleModal1" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+        <div class="buttons">
+            <button type="button" style="width: 120px;" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close" #closeDelete>Dismiss</button>
+            <button type="button" style="width: 120px;" class="btn btn-danger" (click)="deleteCategory()">Delete</button>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="header">
+    <h5>Products</h5>
+    <button type="button" class="btn btn-dark dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+  </div>
+  <div class="main">
+    <input class="form-control" type="text" placeholder="filter products..">
+    <hr>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Category</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of adminProducts, let i = index">
+          <td>{{item.id}}</td>
+          <td style="text-align: start;">{{item.category.name}}</td>
+          <td style="text-align: start;">{{item.name}}</td>
+          <td style="text-align: start;">{{item.description}}</td>
+          <td style="text-align: start;">{{item.price}}</td>
+          <td>
+            <img [src]="item.imagePath" alt="" width="50px">
+          </td>
+          <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="editProduct(item)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+              (click)="tryDeleteProduct(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Category:</label>
+          <div class="col-sm-10">
+            <select class="form-select" formControlName="category" (change)="changeCategory()">
+              <option [ngValue]="category" *ngFor="let category of adminCategories">{{category.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="name" class="form-control">
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Description:</label>
+          <div class="col-sm-10">
+            <textarea formControlName="description" class="form-control" id="" cols="30" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label">Price:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" formControlName="price">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Default file input example</label>
+          <input class="form-control" type="file" id="formFile" (change)="uload($event)">
+        </div>
+
+        <div class="progress mb-3">
+          <div class="progress-bar progress-bar-striped bg-dark" role="progressbar" [style.width.%]="uploadPercent"  aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="mb-3 p-3 gray rounded" *ngIf="isUploaded">
+          File uploaded. Now you can add product.
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #close>Close</button>
+        <button *ngIf="!editStatus" type="submit" class="btn btn-dark" [disabled]="productForm.invalid">Add</button>
+        <button *ngIf="editStatus" type="button" class="btn btn-dark" (click)="saveEditProduct()">Save edit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Smal Modal -->
+<div class="modal" id="exampleModal1" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="buttons">
+        <button type="button" style="width: 120px;" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close"
+          #closeDelete>Dismiss</button>
+        <button type="button" style="width: 120px;" class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

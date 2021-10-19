@@ -1,0 +1,12 @@
+    <div class="row m-3">
+      <div class="col-4" *ngFor="let blog of userBlogs">
+        <div class="card">
+          <img src="../assets/images/woman-pizza.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="text-primary">{{blog.date | date: 'mediumDate'}}  <span>  {{blog.author | uppercase}}</span></p>
+            <h4>{{blog.title}}</h4>
+            <p>{{blog.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
